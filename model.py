@@ -156,3 +156,66 @@ class LF(nn.Module):
         filters = envelope * carrier
         filters = filters / torch.norm(filters, dim=1, keepdim=True)  
         return filters.unsqueeze(1)  
+
+
+
+class FourierFeatureMap(nn.Module):    
+    def __init__(self, in_features, out_features, coordinate_scales):
+        super().__init__()
+
+        self.num_freq = out_features // 2
+        self.out_features = out_features
+        self.coordinate_scales = nn.Parameter(torch.tensor(coordinate_scales).unsqueeze(dim=0))
+        self.coordinate_scales.requires_grad = False
+        self.linear = nn.Linear(in_features, self.num_freq, bias=False)
+        self.init_weights()
+        self.linear.weight.requires_grad = False
+    
+    def init_weights(self):
+        with torch.no_grad():
+            self.linear.weight.normal_(std=1, mean=0)
+
+    def forward(self, input):
+        return torch.cat((np.sqrt(2)*torch.sin(self.linear(self.coordinate_scales*input)), 
+                          np.sqrt(2)*torch.cos(self.linear(self.coordinate_scales*input))), dim=-1)
+    
+    
+
+class RobustifiedINR(nn.Module):
+    def __init__(self, coord_dim, ff_out_features, hidden_features, output_dim, coordinate_scales):
+        super().__init__()
+        
+   
+        self.fourier_encoder = FourierFeatureMap(coord_dim, ff_out_features, coordinate_scales)
+
+
+        self.linear1 = nn.Linear(ff_out_features, ff_out_features, bias=False)
+        self.relu1 = nn.ReLU()
+        self.linear2 = nn.Linear(ff_out_features, ff_out_features, bias=False)
+
+
+        self.fc1 = nn.Linear(ff_out_features, hidden_features)
+        self.relu2 = nn.ReLU()
+        self.fc2 = nn.Linear(hidden_features, hidden_features)
+        self.relu3 = nn.ReLU()
+        self.fc3 = nn.Linear(hidden_features, output_dim)
+
+    def forward(self, coords):
+
+        ff_encoded = self.fourier_encoder(coords)
+
+        # Adaptive Filtering
+        mask = self.linear1(ff_encoded)
+        mask = self.relu1(mask)
+        mask = self.linear2(mask)
+        
+        filtered = mask * ff_encoded  
+        
+        # Final Prediction
+        out = self.fc1(filtered)
+        out = self.relu2(out)
+        out = self.fc2(out)
+        out = self.relu3(out)
+        out = self.fc3(out)
+
+        return out
