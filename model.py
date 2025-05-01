@@ -229,6 +229,10 @@ class RobustifiedINR(nn.Module):
         out = self.fc3(out)
         out = self.relu4(out)
         out = self.fc4(out)
+        out = self.relu5(out)
+        out = self.fc5(out)
+        out = self.relu6(out)
+        out = self.fc6(out)
 
 
         return out
