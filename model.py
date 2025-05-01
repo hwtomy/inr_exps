@@ -192,13 +192,21 @@ class RobustifiedINR(nn.Module):
         self.linear1 = nn.Linear(ff_out_features, ff_out_features, bias=False)
         self.relu1 = nn.ReLU()
         self.linear2 = nn.Linear(ff_out_features, ff_out_features, bias=False)
+        self.relu2 = nn.ReLU()
+        self.linear3 = nn.Linear(ff_out_features, ff_out_features, bias=False)
 
 
         self.fc1 = nn.Linear(ff_out_features, hidden_features)
         self.relu2 = nn.ReLU()
         self.fc2 = nn.Linear(hidden_features, hidden_features)
         self.relu3 = nn.ReLU()
-        self.fc3 = nn.Linear(hidden_features, output_dim)
+        self.fc3 = nn.Linear(hidden_features, hidden_features)
+        self.relu4 = nn.ReLU()
+        self.fc4 = nn.Linear(hidden_features, hidden_features)
+        self.relu5 = nn.ReLU()
+        self.fc5 = nn.Linear(hidden_features, hidden_features)
+        self.relu6 = nn.ReLU()
+        self.fc6 = nn.Linear(hidden_features, output_dim)
 
     def forward(self, coords):
 
@@ -208,6 +216,8 @@ class RobustifiedINR(nn.Module):
         mask = self.linear1(ff_encoded)
         mask = self.relu1(mask)
         mask = self.linear2(mask)
+        mask = self.relu2(mask)
+        mask = self.linear3(mask)
         
         filtered = mask * ff_encoded  
         
@@ -217,5 +227,8 @@ class RobustifiedINR(nn.Module):
         out = self.fc2(out)
         out = self.relu3(out)
         out = self.fc3(out)
+        out = self.relu4(out)
+        out = self.fc4(out)
+
 
         return out
