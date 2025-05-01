@@ -230,7 +230,11 @@ class RobustifiedINR(nn.Module):
         self.relu5 = nn.ReLU()
         self.fc5 = nn.Linear(hidden_features, hidden_features)
         self.relu6 = nn.ReLU()
-        self.fc6 = nn.Linear(hidden_features, output_dim)
+        self.fc6 = nn.Linear(hidden_features, hidden_features)
+        self.relu7 = nn.ReLU()
+        self.fc7 = nn.Linear(hidden_features, hidden_features)
+        self.relu8 = nn.ReLU()
+        self.fc8 = nn.Linear(hidden_features, output_dim)
 
     def forward(self, coords):
 
@@ -256,6 +260,10 @@ class RobustifiedINR(nn.Module):
         out = self.fc5(out)
         out = self.relu6(out)
         out = self.fc6(out)
+        out = self.relu7(out)
+        out = self.fc7(out)
+        out = self.relu8(out)
+        out = self.fc8(out)
 
 
-        return torch.sigmoid(out)
+        return out
