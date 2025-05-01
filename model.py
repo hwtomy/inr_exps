@@ -179,6 +179,29 @@ class FourierFeatureMap(nn.Module):
         return torch.cat((np.sqrt(2)*torch.sin(self.linear(self.coordinate_scales*input)), 
                           np.sqrt(2)*torch.cos(self.linear(self.coordinate_scales*input))), dim=-1)
     
+
+
+
+class PositionalEncoding(nn.Module):
+    def __init__(self, in_features, out_features, coordinate_scales):
+        super().__init__()
+        self.num_freq = out_features // 2
+        self.in_features = in_features
+        self.out_features = out_features
+        
+        self.coordinate_scales = nn.Parameter(torch.tensor(coordinate_scales).unsqueeze(0), requires_grad=False)
+        
+    
+        freq_bands = torch.linspace(1.0, self.num_freq, self.num_freq) * np.pi 
+        self.register_buffer("freq_bands", freq_bands)
+
+    def forward(self, x):  # x: [N, in_features]
+        x = self.coordinate_scales.to(x.device) * x  
+        x_proj = x.unsqueeze(-1) * self.freq_bands  
+        x_proj = x_proj.view(x.shape[0], -1)  
+
+        return torch.cat([torch.sin(x_proj), torch.cos(x_proj)], dim=-1)  # [N, out_features]
+    
     
 
 class RobustifiedINR(nn.Module):
@@ -190,10 +213,11 @@ class RobustifiedINR(nn.Module):
 
 
         self.linear1 = nn.Linear(ff_out_features, ff_out_features, bias=False)
-        self.relu1 = nn.ReLU()
+        # self.relu1 = nn.ReLU()
         self.linear2 = nn.Linear(ff_out_features, ff_out_features, bias=False)
-        self.relu2 = nn.ReLU()
+        # self.relu2 = nn.ReLU()
         self.linear3 = nn.Linear(ff_out_features, ff_out_features, bias=False)
+        self.relu1 = nn.ReLU()
 
 
         self.fc1 = nn.Linear(ff_out_features, hidden_features)
@@ -218,7 +242,6 @@ class RobustifiedINR(nn.Module):
         mask = self.linear2(mask)
         mask = self.relu2(mask)
         mask = self.linear3(mask)
-        
         filtered = mask * ff_encoded  
         
         # Final Prediction
@@ -235,4 +258,4 @@ class RobustifiedINR(nn.Module):
         out = self.fc6(out)
 
 
-        return out
+        return torch.sigmoid(out)

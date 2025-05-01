@@ -80,8 +80,8 @@ def main():
             coordinate_scales=[1.0/W, 1.0/H]
         ).to(device)
 
-        optimizer = optim.Adam(model.parameters(), lr=1e-4)
-        scheduler = CosineAnnealingLR(optimizer, T_max=20000, eta_min=0.00001)
+        optimizer = optim.Adam(model.parameters(), lr=1e-3)
+        scheduler = CosineAnnealingLR(optimizer, T_max=20000, eta_min=0.0001)
 
         train(model, coords, pixels, optimizer, device, scheduler,epochs)
 
