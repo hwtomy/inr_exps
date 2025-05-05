@@ -1,0 +1,12 @@
+Training:   0%|                                                                                                                                                                 | 0/2000 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 110, in <module>
+    main()
+    ~~~~^^
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 97, in main
+    train(model, coords, pixels, optimizer, device, scheduler,epochs,temp_dir,idx)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 28, in train
+    imgs = recons(activation[j], H, W)
+                                 ^
+NameError: name 'H' is not defined

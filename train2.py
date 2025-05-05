@@ -11,7 +11,7 @@ from torchvision.datasets import ImageFolder
 from tqdm import tqdm
 import os
 import numpy as np
-from torch.optim.lr_scheduler import CosineAnnealingLR
+from torch.optim.lr_scheduler import CosineAnnealingLR,LambdaLR
 import wandb
 
 
@@ -39,6 +39,7 @@ def evaluate_one_image(model, coords, pixels, device, H, W, output_dir, idx):
         preds = model(coords)
         loss = psnr(preds, pixels)
         imgs = recons(preds, H, W)
+        # imgs = recons(preds, H*, W)
         save_images(imgs, output_dir, prefix=f"pred{idx:03d}")
 
     return loss
@@ -77,11 +78,12 @@ def main():
             ff_out_features=256,
             hidden_features=256,
             output_dim=3,
-            coordinate_scales=[1.0/W, 1.0/H]
+            coordinate_scales=[1.0, 1.0]
         ).to(device)
 
-        optimizer = optim.Adam(model.parameters(), lr=1e-3)
-        scheduler = CosineAnnealingLR(optimizer, T_max=20000, eta_min=0.0001)
+        optimizer = optim.Adam(model.parameters(), lr=3e-3)
+        # scheduler = CosineAnnealingLR(optimizer, T_max=20000, eta_min=0.0001)
+        scheduler = LambdaLR(optimizer, lambda x: 0.1**min(x/epochs, 1))
 
         train(model, coords, pixels, optimizer, device, scheduler,epochs)
 

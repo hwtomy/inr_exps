@@ -1,0 +1,16 @@
+{"time":"2025-05-02T12:59:32.112332836Z","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/wandb/run-20250502_125931-ni78um9i/logs/debug-core.log"}
+{"time":"2025-05-02T12:59:32.396846084Z","level":"INFO","msg":"created new stream","id":"ni78um9i"}
+{"time":"2025-05-02T12:59:32.39688689Z","level":"INFO","msg":"stream: started","id":"ni78um9i"}
+{"time":"2025-05-02T12:59:32.396916915Z","level":"INFO","msg":"writer: Do: started","stream_id":"ni78um9i"}
+{"time":"2025-05-02T12:59:32.396985542Z","level":"INFO","msg":"handler: started","stream_id":"ni78um9i"}
+{"time":"2025-05-02T12:59:32.396980483Z","level":"INFO","msg":"sender: started","stream_id":"ni78um9i"}
+{"time":"2025-05-02T12:59:32.65336229Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-02T13:02:26.288145266Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-02T13:02:26.288957218Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-02T13:02:27.076444938Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-02T13:02:27.291463081Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2025-05-02T13:02:27.297970592Z","level":"INFO","msg":"stream: closing","id":"ni78um9i"}
+{"time":"2025-05-02T13:02:27.2979858Z","level":"INFO","msg":"handler: closed","stream_id":"ni78um9i"}
+{"time":"2025-05-02T13:02:27.297997011Z","level":"INFO","msg":"writer: Close: closed","stream_id":"ni78um9i"}
+{"time":"2025-05-02T13:02:27.29801819Z","level":"INFO","msg":"sender: closed","stream_id":"ni78um9i"}
+{"time":"2025-05-02T13:02:27.301686928Z","level":"INFO","msg":"stream: closed","id":"ni78um9i"}

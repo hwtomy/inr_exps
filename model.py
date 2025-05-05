@@ -185,22 +185,26 @@ class FourierFeatureMap(nn.Module):
 class PositionalEncoding(nn.Module):
     def __init__(self, in_features, out_features, coordinate_scales):
         super().__init__()
-        self.num_freq = out_features // 2
+    
+        self.num_freq = out_features // 2 
         self.in_features = in_features
         self.out_features = out_features
-        
+
         self.coordinate_scales = nn.Parameter(torch.tensor(coordinate_scales).unsqueeze(0), requires_grad=False)
-        
-    
-        freq_bands = torch.linspace(1.0, self.num_freq, self.num_freq) * np.pi 
+
+
+        self.freq_bands = torch.linspace(1.0, max_freq, num_freq) * np.pi
+        # self.freq_bands = 2 ** torch.linspace(0., np.log2(max_freq), num_freq) * np.pi
+
         self.register_buffer("freq_bands", freq_bands)
 
-    def forward(self, x):  # x: [N, in_features]
+    def forward(self, x):
         x = self.coordinate_scales.to(x.device) * x  
-        x_proj = x.unsqueeze(-1) * self.freq_bands  
-        x_proj = x_proj.view(x.shape[0], -1)  
+        x = x.unsqueeze(-1) * self.freq_bands 
+        sinc = np.sqrt(2)*torch.sin(x)
+        cosc = np.sqrt(2)*torch.cos(x)
+        return torch.cat([sinc, cosc], dim=-1).view(x.shape[0], -1)  
 
-        return torch.cat([torch.sin(x_proj), torch.cos(x_proj)], dim=-1)  # [N, out_features]
     
     
 
@@ -210,6 +214,7 @@ class RobustifiedINR(nn.Module):
         
    
         self.fourier_encoder = FourierFeatureMap(coord_dim, ff_out_features, coordinate_scales)
+        # self.fourier_encoder = PositionalEncoding(coord_dim, ff_out_features, coordinate_scales)
 
 
         self.linear1 = nn.Linear(ff_out_features, ff_out_features, bias=False)
@@ -267,3 +272,189 @@ class RobustifiedINR(nn.Module):
 
 
         return out
+
+
+
+
+class RobustifiedINRF(nn.Module):
+    def __init__(self, coord_dim, ff_out_features, hidden_features, output_dim, coordinate_scales):
+        super().__init__()
+        
+   
+        # self.fourier_encoder = FourierFeatureMap(coord_dim, ff_out_features, coordinate_scales)
+
+
+        self.linear1 = nn.Linear(ff_out_features, ff_out_features, bias=False)
+        # self.relu1 = nn.ReLU()
+        self.linear2 = nn.Linear(ff_out_features, ff_out_features, bias=False)
+        # self.relu2 = nn.ReLU()
+        self.linear3 = nn.Linear(ff_out_features, ff_out_features, bias=False)
+        self.relu1 = nn.ReLU()
+
+
+        self.fc1 = nn.Linear(ff_out_features, hidden_features)
+        self.relu2 = nn.ReLU()
+        self.fc2 = nn.Linear(hidden_features, hidden_features)
+        self.relu3 = nn.ReLU()
+        self.fc3 = nn.Linear(hidden_features, hidden_features)
+        self.relu4 = nn.ReLU()
+        self.fc4 = nn.Linear(hidden_features, hidden_features)
+        self.relu5 = nn.ReLU()
+        self.fc5 = nn.Linear(hidden_features, hidden_features)
+        self.relu6 = nn.ReLU()
+        self.fc6 = nn.Linear(hidden_features, hidden_features)
+        self.relu7 = nn.ReLU()
+        self.fc7 = nn.Linear(hidden_features, hidden_features)
+        self.relu8 = nn.ReLU()
+        self.fc8 = nn.Linear(hidden_features, output_dim)
+
+    def forward(self, coords):
+
+        # ff_encoded = self.fourier_encoder(coords)
+        ff_encoded = coords
+        # Adaptive Filtering
+        mask = self.linear1(ff_encoded)
+        mask = self.relu1(mask)
+        mask = self.linear2(mask)
+        mask = self.relu2(mask)
+        mask = self.linear3(mask)
+        filtered = mask * ff_encoded  
+        
+        # Final Prediction
+        out = self.fc1(filtered)
+        out = self.relu2(out)
+        out = self.fc2(out)
+        out = self.relu3(out)
+        out = self.fc3(out)
+        out = self.relu4(out)
+        out = self.fc4(out)
+        out = self.relu5(out)
+        out = self.fc5(out)
+        out = self.relu6(out)
+        out = self.fc6(out)
+        out = self.relu7(out)
+        out = self.fc7(out)
+        out = self.relu8(out)
+        out = self.fc8(out)
+
+
+        return out
+
+
+
+
+class ComplexGaborLayer2D(nn.Module):
+    '''
+        Implicit representation with complex Gabor nonlinearity with 2D activation function
+        
+        Inputs;
+            in_features: Input features
+            out_features; Output features
+            bias: if True, enable bias for the linear operation
+            is_first: Legacy SIREN parameter
+            omega_0: Legacy SIREN parameter
+            omega0: Frequency of Gabor sinusoid term
+            sigma0: Scaling of Gabor Gaussian term
+            trainable: If True, omega and sigma are trainable parameters
+    '''
+    
+    def __init__(self, in_features, out_features, bias=True,
+                 is_first=False, omega0=10.0, sigma0=10.0,
+                 trainable=False):
+        super().__init__()
+        self.omega_0 = omega0
+        self.scale_0 = sigma0
+        self.is_first = is_first
+        
+        self.in_features = in_features
+        
+        if self.is_first:
+            dtype = torch.float
+        else:
+            dtype = torch.cfloat
+            
+        # Set trainable parameters if they are to be simultaneously optimized
+        self.omega_0 = nn.Parameter(self.omega_0*torch.ones(1), trainable)
+        self.scale_0 = nn.Parameter(self.scale_0*torch.ones(1), trainable)
+        
+        self.linear = nn.Linear(in_features,
+                                out_features,
+                                bias=bias,
+                                dtype=dtype)
+        
+        # Second Gaussian window
+        self.scale_orth = nn.Linear(in_features,
+                                    out_features,
+                                    bias=bias,
+                                    dtype=dtype)
+    
+    def forward(self, input):
+        lin = self.linear(input)
+        
+        scale_x = lin
+        scale_y = self.scale_orth(input)
+        
+        freq_term = torch.exp(1j*self.omega_0*lin)
+        
+        arg = scale_x.abs().square() + scale_y.abs().square()
+        gauss_term = torch.exp(-self.scale_0*self.scale_0*arg)
+                
+        return freq_term*gauss_term
+    
+class INRGabor(nn.Module):
+    def __init__(self, in_features, hidden_features, 
+                 hidden_layers, 
+                 out_features, outermost_linear=True,
+                 first_omega_0=10, hidden_omega_0=10., scale=10.0,
+                 pos_encode=False, sidelength=512, fn_samples=None,
+                 use_nyquist=True):
+        super().__init__()
+        
+        # All results in the paper were with the default complex 'gabor' nonlinearity
+        self.nonlin = ComplexGaborLayer2D
+        
+        # Since complex numbers are two real numbers, reduce the number of 
+        # hidden parameters by 4
+        hidden_features = int(hidden_features/2)
+        dtype = torch.cfloat
+        self.complex = True
+        self.wavelet = 'gabor'    
+        
+        # Legacy parameter
+        self.pos_encode = False
+            
+        self.net = []
+        self.net.append(self.nonlin(in_features,
+                                    hidden_features, 
+                                    omega0=first_omega_0,
+                                    sigma0=scale,
+                                    is_first=True,
+                                    trainable=False))
+
+        for i in range(hidden_layers):
+            self.net.append(self.nonlin(hidden_features,
+                                        hidden_features, 
+                                        omega0=hidden_omega_0,
+                                        sigma0=scale))
+
+        final_linear = nn.Linear(hidden_features,
+                                 out_features,
+                                 dtype=dtype)            
+        self.net.append(final_linear)
+        
+        self.net = nn.Sequential(*self.net)
+    
+    def forward(self, coords):
+
+        x = coords
+        activations = []
+
+        for i, layer in enumerate(self.net):
+            x = layer(x)
+        # if isinstance(layer, ComplexGaborLayer2D):
+            activations.append(x.detach().real)
+        
+        if self.wavelet == 'gabor':
+            return x.real, activations
+         
+        return x, activations

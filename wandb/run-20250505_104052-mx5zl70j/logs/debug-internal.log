@@ -1,0 +1,15 @@
+{"time":"2025-05-05T10:40:52.921639842Z","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/wandb/run-20250505_104052-mx5zl70j/logs/debug-core.log"}
+{"time":"2025-05-05T10:40:53.241309184Z","level":"INFO","msg":"created new stream","id":"mx5zl70j"}
+{"time":"2025-05-05T10:40:53.24136579Z","level":"INFO","msg":"stream: started","id":"mx5zl70j"}
+{"time":"2025-05-05T10:40:53.24139828Z","level":"INFO","msg":"sender: started","stream_id":"mx5zl70j"}
+{"time":"2025-05-05T10:40:53.241402679Z","level":"INFO","msg":"writer: Do: started","stream_id":"mx5zl70j"}
+{"time":"2025-05-05T10:40:53.241488909Z","level":"INFO","msg":"handler: started","stream_id":"mx5zl70j"}
+{"time":"2025-05-05T10:40:53.505336838Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-05T10:40:55.021462219Z","level":"INFO","msg":"stream: closing","id":"mx5zl70j"}
+{"time":"2025-05-05T10:40:55.0214897Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-05T10:40:55.021543089Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-05T10:40:55.890205303Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-05T10:40:56.105248206Z","level":"INFO","msg":"handler: closed","stream_id":"mx5zl70j"}
+{"time":"2025-05-05T10:40:56.105263735Z","level":"INFO","msg":"writer: Close: closed","stream_id":"mx5zl70j"}
+{"time":"2025-05-05T10:40:56.105271239Z","level":"INFO","msg":"sender: closed","stream_id":"mx5zl70j"}
+{"time":"2025-05-05T10:40:56.106460494Z","level":"INFO","msg":"stream: closed","id":"mx5zl70j"}

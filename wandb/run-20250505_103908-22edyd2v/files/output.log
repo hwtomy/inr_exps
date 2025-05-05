@@ -1,0 +1,14 @@
+Training:   0%|                                                                                                                                                                 | 0/2000 [00:00<?, ?it/s]/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py:35: UserWarning: The use of `x.T` on tensors of dimension other than 2 to reverse their shape is deprecated and it will throw an error in a future release. Consider `x.mT` to transpose batches of matrices or `x.permute(*torch.arange(x.ndim - 1, -1, -1))` to reverse the dimensions of a tensor. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:4413.)
+  act = activation[j].T.reshape(-1, H, W).cpu()  # [C, H, W]
+Training:   0%|                                                                                                                                                                 | 0/2000 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 131, in <module>
+    main()
+    ~~~~^^
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 118, in main
+    train(model, coords, pixels, optimizer, device, scheduler,epochs,temp_dir,idx,H,W)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 39, in train
+    ct.unsqueeze(1),  # [C, 1, H, W]
+    ^^
+NameError: name 'ct' is not defined. Did you mean: 'act'?

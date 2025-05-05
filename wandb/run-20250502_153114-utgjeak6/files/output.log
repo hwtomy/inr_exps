@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 102, in <module>
+    main()
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 84, in main
+    ffm = FourierFeatureMap(coord_dim=2, ff_out_features=256, coordinate_scales=[1.0, 1.0]).to(device)
+TypeError: FourierFeatureMap.__init__() got an unexpected keyword argument 'coord_dim'
+Traceback (most recent call last):
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 102, in <module>
+    main()
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 84, in main
+    ffm = FourierFeatureMap(coord_dim=2, ff_out_features=256, coordinate_scales=[1.0, 1.0]).to(device)
+TypeError: FourierFeatureMap.__init__() got an unexpected keyword argument 'coord_dim'

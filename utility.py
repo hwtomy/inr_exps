@@ -92,6 +92,29 @@ def psnr(preds, targets, max_pixel_value=1.0):
     return 20 * math.log10(max_pixel_value) - 10 * math.log10(mse.item())
 
 
+
+
+class PEFeatureMap(nn.Module):
+    def __init__(self, in_features, out_features, coordinate_scales):
+        super().__init__()
+
+        self.in_features = in_features
+        self.num_frequencies = out_features // (2 * in_features)
+
+        freq_bands = 2.0 ** torch.arange(self.num_frequencies).float() * np.pi  
+        self.register_buffer("freq_bands", freq_bands)
+
+    def forward(self, x):  
+        x = x * self.scales  
+        x_expanded = x.unsqueeze(-1) * self.freq_bands  
+        sin = torch.sin(x_expanded)
+        cos = torch.cos(x_expanded)
+
+        pe = torch.cat([sin, cos], dim=-1)
+
+        return pe.view(x.shape[0], -1)
+
+
 class preimg(Dataset):
     def __init__(self, root_dir, resize=None):
         self.paths = glob.glob(os.path.join(root_dir, '*.png'))
@@ -111,7 +134,7 @@ class preimg(Dataset):
         xs = torch.linspace(0, 1, W)
         ys = torch.linspace(0, 1, H)
         grid_y, grid_x = torch.meshgrid(ys, xs, indexing='ij')
-        coords = torch.stack([grid_x, grid_y], dim=-1).view(-1, 2)  # (H*W, 2)
+        coords = torch.stack([grid_x, grid_y], dim=-1).view(-1, 2)
 
         pix = self.to_tensor(img)            
         pix = pix.permute(1,2,0).view(-1,3) * 2 - 1 

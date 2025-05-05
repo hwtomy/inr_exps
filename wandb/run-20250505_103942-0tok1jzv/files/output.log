@@ -1,0 +1,18 @@
+Training:   0%|                                                                                                                                                                 | 0/2000 [00:00<?, ?it/s]/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py:35: UserWarning: The use of `x.T` on tensors of dimension other than 2 to reverse their shape is deprecated and it will throw an error in a future release. Consider `x.mT` to transpose batches of matrices or `x.permute(*torch.arange(x.ndim - 1, -1, -1))` to reverse the dimensions of a tensor. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:4413.)
+  act = activation[j].T.reshape(-1, H, W).cpu()  # [C, H, W]
+Training:   5%|███████▌                                                                                                                                               | 100/2000 [00:38<12:18,  2.57it/s]
+Traceback (most recent call last):
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 131, in <module>
+    main()
+    ~~~~^^
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 118, in main
+    train(model, coords, pixels, optimizer, device, scheduler,epochs,temp_dir,idx,H,W)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 43, in train
+    pil_img = ToPILImage()(grid)
+  File "/scratch/students/2025-spring-mt-tiowang/envs/inrg/lib/python3.13/site-packages/torchvision/transforms/transforms.py", line 234, in __call__
+    return F.to_pil_image(pic, self.mode)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/scratch/students/2025-spring-mt-tiowang/envs/inrg/lib/python3.13/site-packages/torchvision/transforms/functional.py", line 282, in to_pil_image
+    npimg = (npimg * 255).astype(np.uint8)
+KeyboardInterrupt

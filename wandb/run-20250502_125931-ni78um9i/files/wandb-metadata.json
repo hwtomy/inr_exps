@@ -1,0 +1,42 @@
+{
+  "os": "Linux-6.5.0-45-generic-x86_64-with-glibc2.35",
+  "python": "CPython 3.10.6",
+  "startedAt": "2025-05-02T12:59:32.122601Z",
+  "program": "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py",
+  "codePath": "train.py",
+  "git": {
+    "remote": "https://github.com/hwtomy/inr_exps.git",
+    "commit": "6b76277f1dc9d469034a185d559bcc2fa67193a7"
+  },
+  "email": "tiou.wang@epfl.ch",
+  "root": "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps",
+  "host": "wtogpu-0-0",
+  "executable": "/usr/bin/python",
+  "codePathLocal": "train.py",
+  "cpu_count": 32,
+  "cpu_count_logical": 64,
+  "gpu": "NVIDIA A100-SXM4-40GB",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "7679362727936",
+      "used": "566646067200"
+    }
+  },
+  "memory": {
+    "total": "540738220032"
+  },
+  "cpu": {
+    "count": 32,
+    "countLogical": 64
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA A100-SXM4-40GB",
+      "memoryTotal": "21474836480",
+      "cudaCores": 6912,
+      "architecture": "Ampere"
+    }
+  ],
+  "cudaVersion": "12.4"
+}

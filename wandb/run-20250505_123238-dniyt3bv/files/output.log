@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train2.py", line 99, in <module>
+    main()
+    ~~~~^^
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train2.py", line 75, in main
+    model = RobustifiedINR(
+            ~~~~~~~~~~~~~~^
+        coord_dim=2,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        coordinate_scales=[1.0/W, 1.0/H]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ).to(device)
+    ^
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/model.py", line 217, in __init__
+    self.fourier_encoder = PositionalEncoding(coord_dim, ff_out_features, coordinate_scales)
+                           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/model.py", line 196, in __init__
+    self.freq_bands = torch.linspace(1.0, max_freq, num_freq) * np.pi
+                                          ^^^^^^^^
+NameError: name 'max_freq' is not defined

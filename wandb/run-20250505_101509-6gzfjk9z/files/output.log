@@ -1,0 +1,55 @@
+Training:   4%|█████▌                                                                                                                                                | 745/20000 [01:17<33:26,  9.59it/s]
+Traceback (most recent call last):
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 110, in <module>
+    avg_psnr = sum(all_losses) / len(all_losses)
+    ^^^^^^
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 97, in main
+    ).to(device)
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 31, in train
+    wandb.log({"loss": loss})
+    ~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/scratch/students/2025-spring-mt-tiowang/envs/inrg/lib/python3.13/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+  File "/scratch/students/2025-spring-mt-tiowang/envs/inrg/lib/python3.13/site-packages/wandb/sdk/wandb_run.py", line 503, in wrapper
+    return func(self, *args, **kwargs)
+  File "/scratch/students/2025-spring-mt-tiowang/envs/inrg/lib/python3.13/site-packages/wandb/sdk/wandb_run.py", line 464, in wrapper_fn
+    return func(self, *args, **kwargs)
+  File "/scratch/students/2025-spring-mt-tiowang/envs/inrg/lib/python3.13/site-packages/wandb/sdk/wandb_run.py", line 451, in wrapper
+    return func(self, *args, **kwargs)
+  File "/scratch/students/2025-spring-mt-tiowang/envs/inrg/lib/python3.13/site-packages/wandb/sdk/wandb_run.py", line 2064, in log
+    self._log(data=data, step=step, commit=commit)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/students/2025-spring-mt-tiowang/envs/inrg/lib/python3.13/site-packages/wandb/sdk/wandb_run.py", line 1776, in _log
+    self._partial_history_callback(data, step, commit)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/students/2025-spring-mt-tiowang/envs/inrg/lib/python3.13/site-packages/wandb/sdk/wandb_run.py", line 406, in wrapper
+    return func(self, *args, **kwargs)
+  File "/scratch/students/2025-spring-mt-tiowang/envs/inrg/lib/python3.13/site-packages/wandb/sdk/wandb_run.py", line 1603, in _partial_history_callback
+    self._backend.interface.publish_partial_history(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        publish_step=not_using_tensorboard,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/scratch/students/2025-spring-mt-tiowang/envs/inrg/lib/python3.13/site-packages/wandb/sdk/interface/interface.py", line 686, in publish_partial_history
+    item.value_json = json_dumps_safer_history(v)
+                      ~~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/scratch/students/2025-spring-mt-tiowang/envs/inrg/lib/python3.13/site-packages/wandb/util.py", line 828, in json_dumps_safer_history
+    return dumps(obj, cls=WandBHistoryJSONEncoder, **kwargs)
+  File "/scratch/students/2025-spring-mt-tiowang/envs/inrg/lib/python3.13/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "/scratch/students/2025-spring-mt-tiowang/envs/inrg/lib/python3.13/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/scratch/students/2025-spring-mt-tiowang/envs/inrg/lib/python3.13/json/encoder.py", line 261, in iterencode
+    return _iterencode(o, 0)
+  File "/scratch/students/2025-spring-mt-tiowang/envs/inrg/lib/python3.13/site-packages/wandb/util.py", line 787, in default
+    obj, converted = json_friendly(obj)
+                     ~~~~~~~~~~~~~^^^^^
+  File "/scratch/students/2025-spring-mt-tiowang/envs/inrg/lib/python3.13/site-packages/wandb/util.py", line 597, in json_friendly
+    return obj.item(), True
+           ~~~~~~~~^^
+KeyboardInterrupt

@@ -1,0 +1,12 @@
+Training:   0%|                                                                                                                                                                 | 0/2000 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 131, in <module>
+    main()
+    ~~~~^^
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 118, in main
+    train(model, coords, pixels, optimizer, device, scheduler,epochs,temp_dir,idx,H,W)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 35, in train
+    act = act.T.reshape(-1, H, W).cpu()  # [C, H, W]
+          ^^^
+UnboundLocalError: cannot access local variable 'act' where it is not associated with a value

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 117, in <module>
+    main()
+    ~~~~^^
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 103, in main
+    scheduler = LambdaLR(optimizer, lambda x: 0.1**min(x/epochs, 1))
+                ^^^^^^^^
+NameError: name 'LambdaLR' is not defined

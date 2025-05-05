@@ -1,0 +1,12 @@
+Training:   0%|                                                                                                                                                                 | 0/2000 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 131, in <module>
+    main()
+    ~~~~^^
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 118, in main
+    train(model, coords, pixels, optimizer, device, scheduler,epochs,temp_dir,idx,H,W)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 35, in train
+    act = activation[j].permute(1, 0).reshape(-1, H, W).cpu()  # [C, H, W]
+          ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+RuntimeError: permute(sparse_coo): number of dimensions in the tensor input does not match the length of the desired ordering of dimensions i.e. input.dim() = 3 is not equal to len(dims) = 2

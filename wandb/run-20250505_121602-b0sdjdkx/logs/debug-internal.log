@@ -1,0 +1,16 @@
+{"time":"2025-05-05T12:16:02.408238435Z","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/wandb/run-20250505_121602-b0sdjdkx/logs/debug-core.log"}
+{"time":"2025-05-05T12:16:02.704015877Z","level":"INFO","msg":"created new stream","id":"b0sdjdkx"}
+{"time":"2025-05-05T12:16:02.704094794Z","level":"INFO","msg":"stream: started","id":"b0sdjdkx"}
+{"time":"2025-05-05T12:16:02.704150648Z","level":"INFO","msg":"writer: Do: started","stream_id":"b0sdjdkx"}
+{"time":"2025-05-05T12:16:02.704211511Z","level":"INFO","msg":"sender: started","stream_id":"b0sdjdkx"}
+{"time":"2025-05-05T12:16:02.704264259Z","level":"INFO","msg":"handler: started","stream_id":"b0sdjdkx"}
+{"time":"2025-05-05T12:16:02.945000147Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-05T12:26:08.599763672Z","level":"INFO","msg":"api: retrying HTTP error","status":500,"url":"https://api.wandb.ai/files/tiou-wang-epfl/image-fitting/b0sdjdkx/file_stream","body":"{\"error\":\"context deadline exceeded\"}"}
+{"time":"2025-05-05T12:27:14.683079102Z","level":"INFO","msg":"stream: closing","id":"b0sdjdkx"}
+{"time":"2025-05-05T12:27:14.683164631Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-05T12:27:14.683608788Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-05T12:27:15.601903619Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-05T12:27:15.813870687Z","level":"INFO","msg":"handler: closed","stream_id":"b0sdjdkx"}
+{"time":"2025-05-05T12:27:15.813907726Z","level":"INFO","msg":"writer: Close: closed","stream_id":"b0sdjdkx"}
+{"time":"2025-05-05T12:27:15.813969631Z","level":"INFO","msg":"sender: closed","stream_id":"b0sdjdkx"}
+{"time":"2025-05-05T12:27:15.820378886Z","level":"INFO","msg":"stream: closed","id":"b0sdjdkx"}

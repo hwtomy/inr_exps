@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 111, in <module>
+    main()
+    ~~~~^^
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 82, in main
+    model = INRGabor(
+            ~~~~~~~~^
+            nonlin='wire',
+            ^^^^^^^^^^^^^^
+    ...<8 lines>...
+            sidelength=H
+            ^^^^^^^^^^^^
+            ).to(device)
+            ^
+TypeError: INRGabor.__init__() got an unexpected keyword argument 'nonlin'

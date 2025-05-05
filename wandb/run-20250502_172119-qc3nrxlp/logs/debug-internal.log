@@ -1,0 +1,18 @@
+{"time":"2025-05-02T17:21:20.44042119Z","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/wandb/run-20250502_172119-qc3nrxlp/logs/debug-core.log"}
+{"time":"2025-05-02T17:21:20.732542351Z","level":"INFO","msg":"created new stream","id":"qc3nrxlp"}
+{"time":"2025-05-02T17:21:20.732836055Z","level":"INFO","msg":"stream: started","id":"qc3nrxlp"}
+{"time":"2025-05-02T17:21:20.733176304Z","level":"INFO","msg":"handler: started","stream_id":"qc3nrxlp"}
+{"time":"2025-05-02T17:21:20.733106375Z","level":"INFO","msg":"writer: Do: started","stream_id":"qc3nrxlp"}
+{"time":"2025-05-02T17:21:20.733320571Z","level":"INFO","msg":"sender: started","stream_id":"qc3nrxlp"}
+{"time":"2025-05-02T17:21:21.053350844Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-02T17:56:23.150970919Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-02T17:56:23.151458912Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-02T17:56:24.005975584Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-05-02T17:56:24.152887486Z","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading history steps 19991-19999, summary, console lines 0-4","runtime_seconds":0.146782232}],"total_operations":1}}
+{"time":"2025-05-02T17:57:24.163273099Z","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/tiou-wang-epfl/image-fitting/qc3nrxlp/file_stream","body":"\n<html><head>\n<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<title>502 Server Error</title>\n</head>\n<body text=#000000 bgcolor=#ffffff>\n<h1>Error: Server Error</h1>\n<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>\n<h2></h2>\n</body></html>\n"}
+{"time":"2025-05-02T17:57:24.220679839Z","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading history steps 19991-19999, summary, console lines 0-4","runtime_seconds":60.214575567,"error_status":"retrying HTTP 502 Bad Gateway"}],"total_operations":1}}
+{"time":"2025-05-02T17:57:26.790278738Z","level":"INFO","msg":"stream: closing","id":"qc3nrxlp"}
+{"time":"2025-05-02T17:57:26.790303724Z","level":"INFO","msg":"handler: closed","stream_id":"qc3nrxlp"}
+{"time":"2025-05-02T17:57:26.790315466Z","level":"INFO","msg":"writer: Close: closed","stream_id":"qc3nrxlp"}
+{"time":"2025-05-02T17:57:26.790329131Z","level":"INFO","msg":"sender: closed","stream_id":"qc3nrxlp"}
+{"time":"2025-05-02T17:57:26.792342917Z","level":"INFO","msg":"stream: closed","id":"qc3nrxlp"}

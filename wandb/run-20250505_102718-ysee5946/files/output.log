@@ -1,0 +1,19 @@
+Training:   0%|                                                                                                                                                                 | 0/2000 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 117, in <module>
+    main()
+    ~~~~^^
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 104, in main
+    train(model, coords, pixels, optimizer, device, scheduler,epochs,temp_dir,idx,H,W)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 31, in train
+    save_images(imgs,temp_dir, prefix=f"pred{idx:02d}{epoch:05d}{j}")
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/utility.py", line 163, in save_images
+    pil = to_pil(img)
+  File "/scratch/students/2025-spring-mt-tiowang/envs/inrg/lib/python3.13/site-packages/torchvision/transforms/transforms.py", line 234, in __call__
+    return F.to_pil_image(pic, self.mode)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/scratch/students/2025-spring-mt-tiowang/envs/inrg/lib/python3.13/site-packages/torchvision/transforms/functional.py", line 277, in to_pil_image
+    raise ValueError(f"pic should not have > 4 channels. Got {pic.shape[-1]} channels.")
+ValueError: pic should not have > 4 channels. Got 128 channels.

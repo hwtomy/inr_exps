@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 102, in <module>
+    main()
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 89, in main
+    train(model, coords, pixels, optimizer, device, scheduler,epochs)
+TypeError: train() missing 1 required positional argument: 'epochs'
+Traceback (most recent call last):
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 102, in <module>
+    main()
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 89, in main
+    train(model, coords, pixels, optimizer, device, scheduler,epochs)
+TypeError: train() missing 1 required positional argument: 'epochs'

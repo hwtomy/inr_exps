@@ -1,0 +1,15 @@
+Training: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2000/2000 [03:32<00:00,  9.41it/s]
+Traceback (most recent call last):
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 110, in <module>
+    main()
+    ~~~~^^
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 100, in main
+    psnr_score = evaluate_one_image(model, coords, pixels, device, H, W, output_dir, idx)
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 45, in evaluate_one_image
+    loss = psnr(preds, pixels)
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/utility.py", line 89, in psnr
+    mse = F.mse_loss(preds, targets, reduction='mean')
+  File "/scratch/students/2025-spring-mt-tiowang/envs/inrg/lib/python3.13/site-packages/torch/nn/functional.py", line 3873, in mse_loss
+    if not (target.size() == input.size()):
+                             ^^^^^^^^^^
+AttributeError: 'tuple' object has no attribute 'size'

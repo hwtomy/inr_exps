@@ -1,0 +1,33 @@
+Training:  87%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▍                                  | 17339/20000 [02:27<00:22, 117.51it/s]
+Traceback (most recent call last):
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 107, in <module>
+    main()
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 94, in main
+    train(model, coords, pixels, optimizer, device, scheduler,epochs)
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 28, in train
+    preds = model(coords)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/model.py", line 266, in forward
+    out = self.fc8(out)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/linear.py", line 114, in forward
+    return F.linear(input, self.weight, self.bias)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 107, in <module>
+    main()
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 94, in main
+    train(model, coords, pixels, optimizer, device, scheduler,epochs)
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/train.py", line 28, in train
+    preds = model(coords)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/scratch/students/2025-spring-mt-tiowang/inr/inr_exps/model.py", line 266, in forward
+    out = self.fc8(out)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/modules/linear.py", line 114, in forward
+    return F.linear(input, self.weight, self.bias)
+KeyboardInterrupt
